@@ -23,7 +23,7 @@ def signup(e, p):
     return {"message": "Success", "status_code": 201}
 
 
-def signin(e, p):
+def login(e, p):
     with db.get_db() as session:
         user = session.query(User).filter(User.email == e).first()
 

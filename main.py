@@ -15,4 +15,4 @@ email = data["email"]
 password = data["password"]
 
 signup(email, password)
-signin(email, password)
+login(email, password)
