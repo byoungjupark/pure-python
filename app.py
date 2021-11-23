@@ -1,41 +1,42 @@
-import bcrypt
-import jwt
-import os
+from homi import App, Server
+from homi.extend.service import reflection_service, health_service
 
-from database import db
+from proto import account_pb2
+
+from database import *
 from models import User
-from validate import *
+from validate import hash_password, is_exist_email
 
 
-def signup(e, p):
-    email = email_validate(e)
-    password = password_validate(p)
+Base.metadata.create_all(db.engine)
 
-    if email and password:
-        hashed_password = bcrypt.hashpw(p.encode("utf-8"), bcrypt.gensalt()).decode()
 
-        with db.get_db() as session:
-            if session.query(User).filter(User.email == e).count() > 0:
-                return {"message": "existed email"}
-            session.add(User(e, hashed_password))
-            session.commit()
+app = App(
+    services=[
+        account_pb2._ACCOUNT,
+        reflection_service,
+        health_service,
+    ]
+)
+service_name = "account.Account"
+
+
+@app.method(service_name)
+def signup(
+    request: account_pb2.CreateAccountRequest, **kwargs
+) -> account_pb2.CreateAccountResponse:
+    email = request.email
+    password = request.password
+    hashed_password = hash_password(email, password)
+
+    with db.get_db() as session:
+        email = is_exist_email(email)
+        session.add(User(email, hashed_password))
+        session.commit()
 
     return {"message": "Success", "status_code": 201}
 
 
-def login(e, p):
-    with db.get_db() as session:
-        user = session.query(User).filter(User.email == e).first()
-
-        if not user:
-            return {"message": "non exist email", "status_code": 400}
-
-        hashed_password = user.password
-        check_pw = bcrypt.checkpw(p.encode("utf-8"), hashed_password.encode("utf-8"))
-
-        if check_pw:
-            token = jwt.encode(
-                {"id": user.id}, os.environ["PRIVATE_KEY"], algorithm="HS256"
-            )
-
-            return {"token": token}
+if __name__ == "__main__":
+    server = Server(app)
+    server.run()

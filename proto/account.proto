@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package account;
+
+service Account{
+  rpc signup (CreateAccountRequest) returns (CreateAccountResponse) {}
+}
+
+message CreateAccountRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message CreateAccountResponse {
+  string message = 1;
+  int32 status_code = 2;
+}
