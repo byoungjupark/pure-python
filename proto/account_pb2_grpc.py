@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import account_pb2 as account__pb2
+from proto import account_pb2 as proto_dot_account__pb2
 
 
 class AccountStub(object):
@@ -16,8 +16,8 @@ class AccountStub(object):
         """
         self.signup = channel.unary_unary(
                 '/account.Account/signup',
-                request_serializer=account__pb2.CreateAccountRequest.SerializeToString,
-                response_deserializer=account__pb2.CreateAccountResponse.FromString,
+                request_serializer=proto_dot_account__pb2.CreateAccountRequest.SerializeToString,
+                response_deserializer=proto_dot_account__pb2.CreateAccountResponse.FromString,
                 )
 
 
@@ -35,8 +35,8 @@ def add_AccountServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'signup': grpc.unary_unary_rpc_method_handler(
                     servicer.signup,
-                    request_deserializer=account__pb2.CreateAccountRequest.FromString,
-                    response_serializer=account__pb2.CreateAccountResponse.SerializeToString,
+                    request_deserializer=proto_dot_account__pb2.CreateAccountRequest.FromString,
+                    response_serializer=proto_dot_account__pb2.CreateAccountResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -60,7 +60,7 @@ class Account(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/account.Account/signup',
-            account__pb2.CreateAccountRequest.SerializeToString,
-            account__pb2.CreateAccountResponse.FromString,
+            proto_dot_account__pb2.CreateAccountRequest.SerializeToString,
+            proto_dot_account__pb2.CreateAccountResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

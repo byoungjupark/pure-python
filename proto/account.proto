@@ -11,7 +11,4 @@ message CreateAccountRequest {
   string password = 2;
 }
 
-message CreateAccountResponse {
-  string message = 1;
-  int32 status_code = 2;
-}
+message CreateAccountResponse {}
