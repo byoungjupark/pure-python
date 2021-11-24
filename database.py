@@ -7,18 +7,18 @@ from contextlib import contextmanager
 
 
 DB = {
-    "user": os.environ["DB_USER"],
-    "password": os.environ["DB_PASSWORD"],
-    "host": os.environ["DB_HOST"],
-    "port": os.environ["DB_PORT"],
-    "name": os.environ["DB_NAME"],
+    "user": os.environ.get("DB_USER", "root"),
+    "password": os.environ.get("DB_PASSWORD", "password"),
+    "host": os.environ.get("DB_HOST", "localhost"),
+    "port": os.environ.get("DB_PORT", "3306"),
+    "name": os.environ.get("DB_NAME", "test"),
 }
 
 
 class Database:
     def __init__(self):
         self.engine = create_engine(
-            f"mysql+mysqldb://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['name']}?charset=utf8"
+            f"mysql+pymysql://{DB['user']}:{DB['password']}@{DB['host']}:{DB['port']}/{DB['name']}"
         )
         self._session = sessionmaker(self.engine)
 
