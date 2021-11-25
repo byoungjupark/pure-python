@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13proto/account.proto\x12\x07\x61\x63\x63ount\"7\n\x14\x43reateAccountRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x17\n\x15\x43reateAccountResponse2T\n\x07\x41\x63\x63ount\x12I\n\x06signup\x12\x1d.account.CreateAccountRequest\x1a\x1e.account.CreateAccountResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x13proto/account.proto\x12\x07\x61\x63\x63ount\"H\n\x14\x43reateAccountRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0f\n\x07\x65n_name\x18\x03 \x01(\t\"\x17\n\x15\x43reateAccountResponse2T\n\x07\x41\x63\x63ount\x12I\n\x06signup\x12\x1d.account.CreateAccountRequest\x1a\x1e.account.CreateAccountResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -47,6 +47,13 @@ _CREATEACCOUNTREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='en_name', full_name='account.CreateAccountRequest.en_name', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -60,7 +67,7 @@ _CREATEACCOUNTREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=32,
-  serialized_end=87,
+  serialized_end=104,
 )
 
 
@@ -84,8 +91,8 @@ _CREATEACCOUNTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=89,
-  serialized_end=112,
+  serialized_start=106,
+  serialized_end=129,
 )
 
 DESCRIPTOR.message_types_by_name['CreateAccountRequest'] = _CREATEACCOUNTREQUEST
@@ -115,8 +122,8 @@ _ACCOUNT = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=114,
-  serialized_end=198,
+  serialized_start=131,
+  serialized_end=215,
   methods=[
   _descriptor.MethodDescriptor(
     name='signup',
