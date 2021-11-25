@@ -2,7 +2,7 @@ from typing import Optional, Tuple, Type
 
 import domain
 from repository import StaffRepo
-from exceptions import *
+from grpc_error.exceptions import *
 from requests import StaffRequest
 from data import StaffData
 

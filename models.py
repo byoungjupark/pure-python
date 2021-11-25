@@ -1,5 +1,5 @@
-from database import *
-from orms import Staff
+from db.database import *
+from db.orms import Staff
 from repository import StaffRepo
 from data import StaffData
 

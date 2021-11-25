@@ -1,11 +1,9 @@
-import grpc
-from grpc._server import _Context
 from homi import App, Server
 from homi.extend.service import reflection_service, health_service
 
 from proto import account_pb2
-from database import *
-from error import *
+from db.database import *
+from grpc_error.error import *
 from service import StaffService
 from requests import *
 
