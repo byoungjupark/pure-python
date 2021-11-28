@@ -1,24 +1,54 @@
-from db.database import *
-from db.orms import Staff
+from sqlalchemy import select, update
+
+from db.database import db
+from orms import StaffTable
 from repository import StaffRepo
-from data import StaffData
+from domain import Staff
 
 
 class StaffModel(StaffRepo):
-    def is_exist_email(self, data: StaffData) -> bool:
-        print(data.email)
+    def get_by_email(self, email: str):
         with db.get_db() as session:
-            if session.query(Staff).filter(Staff.email == data.email).count() > 0:
-                return True
-            return False
+            staff = session.execute(
+                select(StaffTable).where(StaffTable.email == email)
+            ).scalar()
 
-    def register_staff(self, data: StaffData) -> None:
+            if not staff:
+                return False
+
+            return StaffTable.to_model(staff)
+
+    def register_staff(self, data: Staff) -> None:
         with db.get_db() as session:
-            session.add(
-                Staff(
-                    Staff.email == data.email,
-                    Staff.password == data.password,
-                    Staff.en_name == data.en_name,
+            session.add(StaffTable.from_model(data))
+            session.commit()
+
+    def find_uuid(self, email: str, password: str):
+        with db.get_db() as session:
+            staff = session.execute(
+                select(StaffTable).where(
+                    StaffTable.email == email, StaffTable.password == password
                 )
+            ).scalar()
+            return StaffTable.to_model(staff)
+
+    def get_by_uuid(self, uuid: str):
+        with db.get_db() as session:
+            staff = session.execute(
+                select(StaffTable).where(StaffTable.uuid == uuid)
+            ).scalar()
+
+            if not staff:
+                return False
+
+            return StaffTable.to_model(staff)
+
+    def update_password(self, uuid: str, password: str):
+        with db.get_db() as session:
+            session.execute(
+                update(StaffTable)
+                .where(StaffTable.uuid == uuid)
+                .values(password=password)
             )
+
             session.commit()

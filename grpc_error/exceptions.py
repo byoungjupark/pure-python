@@ -4,3 +4,7 @@ class InvalidArgument(Exception):
 
 class AlreadyExists(Exception):
     pass
+
+
+class NotFound(Exception):
+    pass

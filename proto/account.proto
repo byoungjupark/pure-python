@@ -4,6 +4,8 @@ package account;
 
 service Account{
   rpc signup (CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc signin (LoginRequest) returns (LoginResponse) {}
+  rpc update_account (UpdateAccountRequest) returns (UpdateAccountResponse) {}
 }
 
 message CreateAccountRequest {
@@ -13,3 +15,19 @@ message CreateAccountRequest {
 }
 
 message CreateAccountResponse {}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string uuid = 1;
+}
+
+message UpdateAccountRequest {
+  string uuid = 1;
+  string password = 2;
+}
+
+message UpdateAccountResponse {}
