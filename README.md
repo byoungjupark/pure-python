@@ -14,18 +14,12 @@ grpc는 아래 링크 참조
 - 이메일과 비밀번호 검증
 - 중복 이메일 예외처리
 
+로그인
+- 이메일, 비밀번호 일치여부
+- uuid response
+
+비밀번호 변경
+- 비밀번호 유효성 검사
+
 ## 디렉토리 구조
 
-```
-.
-├── README.md
-├── app.py
-├── database.py
-├── models.py
-├── proto
-│   ├── account.proto
-│   ├── account_pb2.py
-│   └── account_pb2_grpc.py
-├── requirements.txt
-├── validate.py
-```
