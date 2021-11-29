@@ -23,15 +23,6 @@ class StaffModel(StaffRepo):
             session.add(StaffTable.from_model(data))
             session.commit()
 
-    def find_uuid(self, email: str, password: str):
-        with db.get_db() as session:
-            staff = session.execute(
-                select(StaffTable).where(
-                    StaffTable.email == email, StaffTable.password == password
-                )
-            ).scalar()
-            return StaffTable.to_model(staff)
-
     def get_by_uuid(self, uuid: str):
         with db.get_db() as session:
             staff = session.execute(
@@ -50,5 +41,4 @@ class StaffModel(StaffRepo):
                 .where(StaffTable.uuid == uuid)
                 .values(password=password)
             )
-
             session.commit()

@@ -8,3 +8,15 @@ class AlreadyExists(Exception):
 
 class NotFound(Exception):
     pass
+
+
+class UnAuthenticated(Exception):
+    pass
+
+
+class IncorrectPassword(Exception):
+    pass
+
+
+class SamePassword(Exception):
+    pass

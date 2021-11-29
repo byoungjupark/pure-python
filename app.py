@@ -54,7 +54,12 @@ def signin(request: account_pb2.LoginRequest, **kwargs) -> account_pb2.LoginResp
 def update_account(
     request: account_pb2.UpdateAccountRequest, **kwargs
 ) -> account_pb2.UpdateAccountResponse:
-    req = UpdateAccountCommand(uuid=request.uuid, password=request.password)
+    req = UpdateAccountCommand(
+        uuid=request.uuid,
+        origin_password=request.origin_password,
+        update_password=request.update_password,
+        check_password=request.check_password,
+    )
 
     stf, err = service.staff.update_account(req)
 

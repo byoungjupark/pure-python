@@ -32,15 +32,25 @@ class StaffService:
             return "", NotFound
 
         if not staff.check_password(req.password):
-            return "", NotFound
+            return "", UnAuthenticated
 
-        return self.staff_repo.find_uuid(staff.email, staff.password).uuid, None
+        return staff.uuid, None
 
     def update_account(
         self, req: UpdateAccountCommand
     ) -> Tuple[None, Optional[Type[Exception]]]:
+        if not (req.update_password == req.check_password):
+            return None, IncorrectPassword
+
         staff = self.staff_repo.get_by_uuid(req.uuid)
-        staff.password = req.password
+
+        if not staff.check_password(req.origin_password):
+            return None, UnAuthenticated
+
+        if staff.check_password(req.update_password):
+            return None, SamePassword
+
+        staff.password = req.update_password
 
         if not staff.password_validate():
             return None, InvalidArgument

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13proto/account.proto\x12\x07\x61\x63\x63ount\"H\n\x14\x43reateAccountRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0f\n\x07\x65n_name\x18\x03 \x01(\t\"\x17\n\x15\x43reateAccountResponse\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1d\n\rLoginResponse\x12\x0c\n\x04uuid\x18\x01 \x01(\t\"6\n\x14UpdateAccountRequest\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x17\n\x15UpdateAccountResponse2\xe2\x01\n\x07\x41\x63\x63ount\x12I\n\x06signup\x12\x1d.account.CreateAccountRequest\x1a\x1e.account.CreateAccountResponse\"\x00\x12\x39\n\x06signin\x12\x15.account.LoginRequest\x1a\x16.account.LoginResponse\"\x00\x12Q\n\x0eupdate_account\x12\x1d.account.UpdateAccountRequest\x1a\x1e.account.UpdateAccountResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x13proto/account.proto\x12\x07\x61\x63\x63ount\"H\n\x14\x43reateAccountRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0f\n\x07\x65n_name\x18\x03 \x01(\t\"\x17\n\x15\x43reateAccountResponse\"/\n\x0cLoginRequest\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1d\n\rLoginResponse\x12\x0c\n\x04uuid\x18\x01 \x01(\t\"n\n\x14UpdateAccountRequest\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12\x17\n\x0forigin_password\x18\x02 \x01(\t\x12\x17\n\x0fupdate_password\x18\x03 \x01(\t\x12\x16\n\x0e\x63heck_password\x18\x04 \x01(\t\"\x17\n\x15UpdateAccountResponse2\xe2\x01\n\x07\x41\x63\x63ount\x12I\n\x06signup\x12\x1d.account.CreateAccountRequest\x1a\x1e.account.CreateAccountResponse\"\x00\x12\x39\n\x06signin\x12\x15.account.LoginRequest\x1a\x16.account.LoginResponse\"\x00\x12Q\n\x0eupdate_account\x12\x1d.account.UpdateAccountRequest\x1a\x1e.account.UpdateAccountResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -183,8 +183,22 @@ _UPDATEACCOUNTREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='password', full_name='account.UpdateAccountRequest.password', index=1,
+      name='origin_password', full_name='account.UpdateAccountRequest.origin_password', index=1,
       number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='update_password', full_name='account.UpdateAccountRequest.update_password', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='check_password', full_name='account.UpdateAccountRequest.check_password', index=3,
+      number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -202,7 +216,7 @@ _UPDATEACCOUNTREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=211,
-  serialized_end=265,
+  serialized_end=321,
 )
 
 
@@ -226,8 +240,8 @@ _UPDATEACCOUNTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=267,
-  serialized_end=290,
+  serialized_start=323,
+  serialized_end=346,
 )
 
 DESCRIPTOR.message_types_by_name['CreateAccountRequest'] = _CREATEACCOUNTREQUEST
@@ -289,8 +303,8 @@ _ACCOUNT = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=293,
-  serialized_end=519,
+  serialized_start=349,
+  serialized_end=575,
   methods=[
   _descriptor.MethodDescriptor(
     name='signup',

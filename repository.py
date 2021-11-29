@@ -12,10 +12,6 @@ class StaffRepo(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def find_uuid(self, email: str, password: str):
-        pass
-
-    @abc.abstractmethod
     def get_by_uuid(self, uuid: str):
         pass
 

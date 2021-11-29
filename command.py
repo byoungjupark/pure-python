@@ -14,4 +14,6 @@ class SignInCommand(BaseModel):
 
 class UpdateAccountCommand(BaseModel):
     uuid: str = ""
-    password: str = ""
+    origin_password: str = ""
+    update_password: str = ""
+    check_password: str = ""
