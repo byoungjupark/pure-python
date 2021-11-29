@@ -19,20 +19,6 @@ app = App(
 )
 service_name = "account.Account"
 
-"""
-AdminUser -> Staff
-1. 회원가입 request 이메일, 비밀번호, 영어이름 response -
-2. 로그인 : request 이메일 비밀번호 response uuid
-이메일일치하는지, 비밀번호일치하는지(checkpw), uuid보내기
-3. 비밀변경 : request uuid, 변경할 비밀번호 Response - 
-uuid받는다, 업데이트할 비밀번호 암호화하기, 비밀번호 저장하기
-
-해당이메일에 맞는 비밀번호인지
-해당uuid에 맞는 비밀번호인지
-
-typing, type hint 사용하기
-"""
-
 
 @app.method(service_name)
 def signup(

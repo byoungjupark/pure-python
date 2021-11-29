@@ -18,14 +18,25 @@ grpc는 아래 링크 참조
 
 ```
 .
-├── README.md
-├── app.py
-├── database.py
-├── models.py
-├── proto
-│   ├── account.proto
-│   ├── account_pb2.py
-│   └── account_pb2_grpc.py
-├── requirements.txt
-├── validate.py
+├── ./Dockerfile
+├── ./README.md
+├── ./app.py
+├── ./application.py
+├── ./command.py
+├── ./db
+│   └── ./db/database.py
+├── ./docker-compose.yml
+├── ./domain.py
+├── ./grpc_error
+│   ├── ./grpc_error/error.py
+│   └── ./grpc_error/exceptions.py
+├── ./models.py
+├── ./orms.py
+├── ./proto
+│   ├── ./proto/account.proto
+│   ├── ./proto/account_pb2.py
+│   └── ./proto/account_pb2_grpc.py
+├── ./repository.py
+├── ./requirements.txt
+├── ./service.py
 ```
