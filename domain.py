@@ -4,6 +4,7 @@ import bcrypt
 
 class Staff:
     def __init__(self, email: str, password: str, en_name: str):
+        self.uuid = ""
         self.email = email
         self.password = password
         self.en_name = en_name

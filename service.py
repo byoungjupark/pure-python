@@ -56,5 +56,4 @@ class StaffService:
             return None, InvalidArgument
 
         self.staff_repo.update_password(staff.uuid, staff.hash_password)
-
         return None, None

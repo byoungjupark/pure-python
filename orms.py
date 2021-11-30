@@ -14,8 +14,9 @@ class StaffTable(Base):
 
     @staticmethod
     def to_model(st: "StaffTable") -> Staff:
-        Staff.uuid = st.uuid
-        return Staff(email=st.email, password=st.password, en_name=st.en_name)
+        staff = Staff(email=st.email, password=st.password, en_name=st.en_name)
+        staff.uuid = st.uuid
+        return staff
 
     @staticmethod
     def from_model(s: Staff) -> "StaffTable":
